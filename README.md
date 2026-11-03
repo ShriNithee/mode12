@@ -126,3 +126,102 @@ $ nano webapp.yml
 $ ansible-playbook webapp.yml --ask-become-pass
 $ sudo systemctl status apache2
 $ curl http://localhost
+----------
+jenkins
+(echo 20000&echo 5000&echo 3000)
+Gross Salary-Main.java
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter Basic Salary: ");
+        double basic = sc.nextDouble();
+
+        System.out.print("Enter HRA: ");
+        double hra = sc.nextDouble();
+
+        System.out.print("Enter DA: ");
+        double da = sc.nextDouble();
+
+        double gross = basic + hra + da;
+
+        System.out.println("Gross Salary = " + gross);
+    }
+}
+palindrome - Main.java
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter a number: ");
+        int n = sc.nextInt();
+
+        int original = n;
+        int reverse = 0;
+
+        while (n > 0) {
+            int digit = n % 10;
+            reverse = reverse * 10 + digit;
+            n = n / 10;
+        }
+
+        if (original == reverse)
+            System.out.println("Palindrome");
+        else
+            System.out.println("Not Palindrome");
+    }
+}
+Jenkinsfile
+pipeline {
+    agent any
+
+    stages {
+        stage('Clone') {
+            steps {
+                git 'YOUR_GITHUB_REPOSITORY_URL'
+            }
+        }
+
+        stage('Compile') {
+            steps {
+                bat 'javac Main.java'
+            }
+        }
+
+        stage('Execute') {
+            steps {
+                bat 'java Main'
+            }
+        }
+    }
+}
+gradle
+package org.example;
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter an alphabet: ");
+        char ch = sc.next().charAt(0);
+
+        ch = Character.toLowerCase(ch);
+
+        if (ch >= 'a' && ch <= 'z') {
+            if (ch == 'a' || ch == 'e' || ch == 'i' ||
+                ch == 'o' || ch == 'u') {
+                System.out.println("Vowel");
+            } else {
+                System.out.println("Consonant");
+            }
+        } else {
+            System.out.println("Invalid input");
+        }
+    }
+}
